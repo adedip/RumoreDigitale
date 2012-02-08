@@ -1,7 +1,7 @@
 <div id="a" class="content_div">
 	<div data-role="collapsible-set">
 	  <% for entry in @feedEntries %>
-	    <div data-role="collapsible" data-theme="d">
+	    <div data-role="collapsible" data-theme="c">
 			<h3><%= entry.name %> (<%= entry.published_at.strftime("%d.%m.%y @ %H:%M")%>)</h3>
 			<p>
 				<i><%= entry.published_at.strftime("%d-%m-%Y @ %H:%M")%></i>

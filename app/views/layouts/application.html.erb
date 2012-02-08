@@ -19,16 +19,12 @@
 		.content_div#b {
 		    display: none;
 		}
-		.content_div:first-child {
-		    display: block;
-				
-		}
 	</style>
 	<script type="text/javascript" charset="utf-8">
-		$(document).delegate('[data-role="navbar"] a', 'click', function () {
+		$('div[data-role="navbar"] a').live('click', function () {
 		    $(this).addClass('ui-btn-active');
-		    $('.content_div').hide();
-		    $('#' + $(this).attr('data-href')).show();
+		    $('div.content_div').hide();
+		    $('div#' + $(this).attr('data-href')).show();
 		});
 	</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0; user-scalable=0;' /> 
@@ -39,19 +35,18 @@
 			<%= image_tag "RumoreDigitale_app_480.png", :width => "100%"%>
 			<div data-role="navbar" data-iconpos="bottom" data-theme="e">
 				<ul>
-					<li><a href="#" data-href="b" data-icon="grid">Sito</a></li>
 					<li><a href="#" data-href="a" data-icon="grid">Forum</a></li>
+					<li><a href="#" data-href="b" data-icon="grid">Sito</a></li>
 					<li><%= link_to "Aggiorna", feed_entries_path, "data-icon"=>"refresh", :rel => "external" %></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div>
 		<%= yield %>
 		<div data-role="footer">
-			<div data-role="navbar" data-iconpos="top" data-theme="e">
+			<div data-role="navbar" data-iconpos="right" data-theme="e">
 					<ul>
-						<li><a href="http://www.rumoredigitale.com" data-icon="home">Sito</a></li>
-						<li><a href="http://www.rumoredigitale.com/forum" data-icon="forward">Forum</a></li>
-						<li><%= link_to "Aggiorna", feed_entries_path, "data-icon"=>"refresh", :rel => "external" %></li>
+						<li><a href="http://www.rumoredigitale.com" data-icon="arrow-r">Vai al Sito</a></li>
+						<li><a href="http://www.rumoredigitale.com/forum" data-icon="arrow-r">Vai al Forum</a></li>
 					</ul>
 				</div><!-- /navbar -->
 		</div>
