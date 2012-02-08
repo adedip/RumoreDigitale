@@ -24,16 +24,31 @@ class FeedEntry < ActiveRecord::Base
     private
 
     def self.add_entries(entries, t)
-      entries.each do |entry|
-        unless exists? :guid => entry.id
-          create!(
-            :name         => entry.title.sub(/ il /,": "),
-            :summary      => entry.summary.gsub(/"\/wp-content/, '"http://www.rumoredigitale.com/wp-content'),
-            :url          => entry.url,
-            :published_at => entry.published - 1.hours,
-            :guid         => entry.id,
-            :feed_type    => t
-          )
+      if t == 1
+        entries.each do |entry|
+          unless exists? :guid => entry.id
+            create!(
+              :name         => entry.title.sub(/ il /,": "),
+              :summary      => entry.content.gsub(/"\/wp-content/, '"http://www.rumoredigitale.com/wp-content'),
+              :url          => entry.url,
+              :published_at => entry.published - 1.hours,
+              :guid         => entry.id,
+              :feed_type    => t
+            )
+          end
+        end
+      else
+        entries.each do |entry|
+          unless exists? :guid => entry.id
+            create!(
+              :name         => entry.title,
+              :summary      => entry.content,
+              :url          => entry.url,
+              :published_at => entry.published - 1.hours,
+              :guid         => entry.id,
+              :feed_type    => t
+            )
+          end
         end
       end
     end
