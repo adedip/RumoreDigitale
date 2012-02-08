@@ -1,13 +1,31 @@
-<div data-role="collapsible-set">
-  <% for entry in FeedEntry.all(:limit => 20, :order => "published_at desc") %>
-    <div data-role="collapsible" data-theme="e">
-		<h3><%= entry.name %> (<%= entry.published_at.strftime("%d.%m.%y @ %H:%M")%>)</h3>
-		<p>
-			<i><%= entry.published_at.strftime("%d-%m-%Y @ %H:%M")%></i>
-			<%= entry.summary.html_safe %>
-			<a href="<%= entry.url%>" data-role="button" rel="external">Leggi sul forum</a>
+<div id="a" class="content_div">
+	<div data-role="collapsible-set">
+	  <% for entry in @feedEntries %>
+	    <div data-role="collapsible" data-theme="e">
+			<h3><%= entry.name %> (<%= entry.published_at.strftime("%d.%m.%y @ %H:%M")%>)</h3>
+			<p>
+				<i><%= entry.published_at.strftime("%d-%m-%Y @ %H:%M")%></i>
+				<%= entry.summary.html_safe %>
+				<a href="<%= entry.url%>" data-role="button" rel="external">Leggi sul forum</a>
 
-		<p>
+			<p>
+		</div>
+	  <% end %>
 	</div>
-  <% end %>
+</div>
+<div id="b" class="content_div">
+		<div data-role="collapsible-set">
+		  <% for entry in @blogEntries %>
+		    <div data-role="collapsible" data-theme="e">
+				<h3><%= entry.name %> (<%= entry.published_at.strftime("%d.%m.%y @ %H:%M")%>)</h3>
+				<p>
+					<i><%= entry.published_at.strftime("%d-%m-%Y @ %H:%M")%></i>
+					<%= entry.summary.html_safe %>
+					<a href="<%= entry.url%>" data-role="button" rel="external">Leggi sul forum</a>
+
+				<p>
+			</div>
+		  <% end %>
+		</div>
+	</div>
 </div>

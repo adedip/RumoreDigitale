@@ -1,12 +1,13 @@
 class FeedEntriesController < ApplicationController
   before_filter :find_feedEntry, :only => [:show, :edit, :update, :destroy]
   before_filter :update_feeds, :only => [:index]
+  before_filter :update_blog_feeds, :only => [:index]
 
   # GET /feedEntries
   # GET /feedEntries.xml
   def index
-    @feedEntries = FeedEntry.all
-
+    @feedEntries = FeedEntry.where("feed_type=1").limit(20).order("published_at DESC")
+    @blogEntries = FeedEntry.where("feed_type=2").limit(20).order("published_at DESC")
     respond_to do |wants|
       wants.html # index.html.erb
       wants.xml  { render :xml => @feedEntries }
@@ -82,11 +83,19 @@ class FeedEntriesController < ApplicationController
 
   private
     def update_feeds
-      FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all&feedkey=551cc066-3491-4196-a857-7ae86fc7e5ea")
+      if FeedEntry.where("feed_type = 1").last.created_at < 5.minutes.ago
+        FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all&feedkey=551cc066-3491-4196-a857-7ae86fc7e5ea",1)
+      end
     end
     
-    def find_feedEntry
-      @feedEntry = FeedEntry.find(params[:id])
+    def update_blog_feeds
+      #if FeedEntry.where("feed_type = 2").count > 0 && FeedEntry.where("feed_type = 2").last.created_at < 1440.minutes.ago
+        FeedEntry.update_from_feed("http://www.rumoredigitale.com/feed",2)
+      #end
+    end
+    
+    def find_feedEntry      
+        @feedEntry = FeedEntry.find(params[:id])
     end
 
 end
