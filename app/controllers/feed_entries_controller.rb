@@ -89,9 +89,9 @@ class FeedEntriesController < ApplicationController
     end
     
     def update_blog_feeds
-      #if FeedEntry.where("feed_type = 2").count > 0 && FeedEntry.where("feed_type = 2").last.created_at < 1440.minutes.ago
+      if FeedEntry.where("feed_type = 2").count > 0 && FeedEntry.where("feed_type = 2").last.created_at < 1440.minutes.ago
         FeedEntry.update_from_feed("http://www.rumoredigitale.com/feed",2)
-      #end
+      end
     end
     
     def find_feedEntry      
