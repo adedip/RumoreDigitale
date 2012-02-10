@@ -21,6 +21,10 @@
 			width: auto;
 			margin: 0 0 5px 5px;
 		}
+		img.logo{
+			width: 98%;
+			margin: 1%;
+		}
 		.content_div#b {
 		    display: none;
 		}
@@ -37,7 +41,7 @@
 <body>
 	<div data-role="page" data-theme="d">
 		<div data-role="header">
-			<%= image_tag "RumoreDigitale_app_480.png", :width => "100%"%>
+			<%= image_tag "RumoreDigitale_app_480.png", :class => "logo"%>
 			<div data-role="navbar" data-iconpos="bottom" data-theme="e">
 				<ul>
 					<li><a href="#" data-href="a" data-icon="grid" class="ui-btn-active">Forum</a></li>
