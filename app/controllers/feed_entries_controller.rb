@@ -1,7 +1,7 @@
 class FeedEntriesController < ApplicationController
   before_filter :find_feedEntry, :only => [:show, :edit, :update, :destroy]
-  #before_filter :update_feeds, :only => [:index]
-  before_filter :update_blog_feeds, :only => [:index]
+  before_filter :update_feeds, :only => [:index]
+  #before_filter :update_blog_feeds, :only => [:index]
 
   # GET /feedEntries
   # GET /feedEntries.xml
@@ -90,7 +90,7 @@ class FeedEntriesController < ApplicationController
 
   private
     def update_feeds
-      if FeedEntry.where("feed_type = 1").last.created_at < 10.minutes.ago
+      if FeedEntry.where("feed_type = 1").last.created_at < 5.minutes.ago
         FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all&feedkey=551cc066-3491-4196-a857-7ae86fc7e5ea",1)
       end
     end
