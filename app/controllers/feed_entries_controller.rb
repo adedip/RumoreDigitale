@@ -80,16 +80,23 @@ class FeedEntriesController < ApplicationController
       wants.xml  { head :ok }
     end
   end
+  
+  def force_update
+    FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all&feedkey=551cc066-3491-4196-a857-7ae86fc7e5ea",1)
+    respond_to do |wants|
+      wants.html {redirect_to(root_path)}
+    end
+  end
 
   private
     def update_feeds
-      if FeedEntry.where("feed_type = 1").last.created_at < 5.minutes.ago
+      if FeedEntry.where("feed_type = 1").last.created_at < 10.minutes.ago
         FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all&feedkey=551cc066-3491-4196-a857-7ae86fc7e5ea",1)
       end
     end
     
     def update_blog_feeds
-      if FeedEntry.where("feed_type = 2").count == 0 || FeedEntry.where("feed_type = 2").last.created_at < 1440.minutes.ago
+      if FeedEntry.where("feed_type = 2").last.created_at < 1440.minutes.ago
         FeedEntry.update_from_feed("http://www.rumoredigitale.com/feed",2)
       end
     end

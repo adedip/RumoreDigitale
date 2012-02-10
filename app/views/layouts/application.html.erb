@@ -32,7 +32,7 @@
 		    $('div#' + $(this).attr('data-href')).show();
 		});
 	</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0; user-scalable=0;' /> 
+  <meta name="viewport" content="width=device-width' /> 
 </head>
 <body>
 	<div data-role="page" data-theme="d">
@@ -42,7 +42,7 @@
 				<ul>
 					<li><a href="#" data-href="a" data-icon="grid" class="ui-btn-active">Forum</a></li>
 					<li><a href="#" data-href="b" data-icon="grid">Sito</a></li>
-					<li><%= link_to "Aggiorna", feed_entries_path, "data-icon"=>"refresh", :rel => "external" %></li>
+					<li><%= link_to "Aggiorna", {:controller => :feed_entries, :action => :force_update}, "data-icon"=>"refresh", :rel => "external" %></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div>
@@ -56,5 +56,20 @@
 				</div><!-- /navbar -->
 		</div>
 	</div>
+	
+		
+	
+	<script type="text/javascript" charset="utf-8">
+	(function($){
+		function loadSettings(){
+			//Initialize dynamic configuration.
+			$.mobile.loadingMessage = "Caricamento...";
+			$.mobile.isProduction = true;
+		}
+		loadSettings();
+	}(jQuery));
+
+	</script>
+	
 </body>
 </html>
