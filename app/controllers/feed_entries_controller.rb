@@ -1,6 +1,6 @@
 class FeedEntriesController < ApplicationController
   before_filter :find_feedEntry, :only => [:show, :edit, :update, :destroy]
-  before_filter :update_feeds, :only => [:index]
+  #before_filter :update_feeds, :only => [:index]
   before_filter :update_blog_feeds, :only => [:index]
 
   # GET /feedEntries
