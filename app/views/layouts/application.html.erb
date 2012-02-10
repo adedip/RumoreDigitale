@@ -27,6 +27,25 @@
 		.content_div#b {
 		    display: none;
 		}
+		.ui-btn-active {
+			border: 1px solid #808080 /*{global-active-border}*/;
+			background: #4d4d4d /*{global-active-background-color}*/;
+			font-weight: bold;
+			color: #fcee21 /*{global-active-color}*/;
+			cursor: pointer;
+			text-shadow:  0  /*{global-active-shadow-x}*/  -1px  /*{global-active-shadow-y}*/  1px  /*{global-active-shadow-radius}*/ #eeeeee /*{global-active-shadow-color}*/;
+			text-decoration: none;
+			background-image: -webkit-gradient(linear, left top, left bottom, from( #545454 /*{global-active-background-start}*/), to( #454545 /*{global-active-background-end}*/)); /* Saf4+, Chrome */
+			background-image: -webkit-linear-gradient( #545454 /*{global-active-background-start}*/, #454545 /*{global-active-background-end}*/); /* Chrome 10+, Saf5.1+ */
+			background-image:    -moz-linear-gradient( #545454 /*{global-active-background-start}*/, #454545 /*{global-active-background-end}*/); /* FF3.6 */
+			background-image:     -ms-linear-gradient( #545454 /*{global-active-background-start}*/, #454545 /*{global-active-background-end}*/); /* IE10 */
+			background-image:      -o-linear-gradient( #545454 /*{global-active-background-start}*/, #454545 /*{global-active-background-end}*/); /* Opera 11.10+ */
+			background-image:         linear-gradient( #545454 /*{global-active-background-start}*/, #454545 /*{global-active-background-end}*/);
+			 font-family: Helvetica, Arial, sans-serif  /*{global-font-family}*/;
+		}
+		.ui-btn-active a.ui-link-inherit {
+			color: #fcee21 /*{global-active-color}*/;
+		}
 	</style>
 	<script type="text/javascript" charset="utf-8">
 		$('div[data-role="navbar"] a').live('click', function () {
