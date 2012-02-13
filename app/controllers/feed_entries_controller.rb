@@ -82,7 +82,7 @@ class FeedEntriesController < ApplicationController
   end
   
   def force_update
-    FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all&feedkey=551cc066-3491-4196-a857-7ae86fc7e5ea",1)
+    FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all",1)
     respond_to do |wants|
       wants.html {redirect_to(root_path)}
     end
@@ -91,7 +91,7 @@ class FeedEntriesController < ApplicationController
   private
     def update_feeds
       if FeedEntry.where("feed_type = 1").last.created_at < 5.minutes.ago
-        FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all&feedkey=551cc066-3491-4196-a857-7ae86fc7e5ea",1)
+        FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all",1)
       end
     end
     
