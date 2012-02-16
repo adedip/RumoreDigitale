@@ -105,7 +105,7 @@ class FeedEntriesController < ApplicationController
     def update_blog_feeds
       last = FeedEntry.where("feed_type = 2").last
       if last.created_at < 1440.minutes.ago
-        if last.updated_at < 500.minutes.ago
+        if last.updated_at < 60.minutes.ago
           last.updated_at = Time.now
           last.save
           FeedEntry.update_from_feed("http://www.rumoredigitale.com/feed",2)
