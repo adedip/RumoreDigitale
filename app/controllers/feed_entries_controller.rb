@@ -92,13 +92,19 @@ class FeedEntriesController < ApplicationController
 
   private
     def update_feeds
-      if FeedEntry.where("feed_type = 1").last.created_at < 5.minutes.ago
-        FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all",1)
+      last = FeedEntry.where("feed_type = 1").last
+      if last.created_at < 5.minutes.ago
+        if last.updated_at < 1.minutes.ago
+          last.updated_at = Time.now
+          last.save
+          FeedEntry.update_from_feed("http://www.rumoredigitale.com/forum/?xfeed=all",1)
+        end
       end
     end
     
     def update_blog_feeds
-      if FeedEntry.where("feed_type = 2").last.created_at < 1440.minutes.ago
+      last = FeedEntry.where("feed_type = 2").last
+      if last.created_at < 1440.minutes.ago
         FeedEntry.update_from_feed("http://www.rumoredigitale.com/feed",2)
       end
     end
