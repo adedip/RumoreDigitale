@@ -1,4 +1,5 @@
 class FeedEntriesController < ApplicationController
+  
   before_filter :find_feedEntry, :only => [:show, :edit, :update, :destroy]
   before_filter :update_feeds, :only => [:index]
   before_filter :update_blog_feeds, :only => [:index]
@@ -8,6 +9,7 @@ class FeedEntriesController < ApplicationController
   def index
     @feedEntries = FeedEntry.where("feed_type=1").limit(20).order("published_at DESC")
     @blogEntries = FeedEntry.where("feed_type=2").limit(20).order("published_at DESC")
+    
     respond_to do |wants|
       wants.html # index.html.erb
       wants.xml  { render :xml => @feedEntries }
