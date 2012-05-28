@@ -31,7 +31,7 @@ class FeedEntry < ActiveRecord::Base
               :name         => entry.title.sub(/ il /,": "),
               :summary      => entry.summary.gsub(/"\/wp-content/, '"http://www.rumoredigitale.com/wp-content').gsub(/href="\//, 'href="http://www.rumoredigitale.com/'),
               :url          => entry.url,
-              :published_at => entry.published - 1.hours,
+              :published_at => entry.published - 2.hours,
               :guid         => entry.id,
               :feed_type    => t
             )
@@ -44,7 +44,7 @@ class FeedEntry < ActiveRecord::Base
               :name         => entry.title,
               :summary      => entry.content,
               :url          => entry.url,
-              :published_at => entry.published - 1.hours,
+              :published_at => entry.published - 2.hours,
               :guid         => entry.id,
               :feed_type    => t
             )

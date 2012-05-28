@@ -16,6 +16,18 @@ class FeedEntriesController < ApplicationController
     end
   end
 
+  def topic
+    g = FeedEntry.find(params[:id]).guid
+    s = g[0..g.index("/#p").to_i]
+    @feedEntries = FeedEntry.where("feed_type = 1 AND guid like ?", "#{s}%").limit(20).order("published_at DESC")
+    
+    respond_to do |wants|
+      wants.html # index.html.erb
+      wants.xml  { render :xml => @feedEntries }
+    end
+  end
+  
+
   # GET /feedEntries/1
   # GET /feedEntries/1.xml
   def show

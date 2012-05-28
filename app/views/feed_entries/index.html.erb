@@ -6,8 +6,8 @@
 				<p>
 					<i><%= entry.published_at.strftime("%d-%m-%Y @ %H:%M")%></i>
 					<%= entry.summary.html_safe %>
+					<%= link_to "Leggi il topic", :action => "topic", :id => entry.id%>
 					<a href="<%= entry.url%>" data-role="button" rel="external">Leggi sul forum</a>
-
 				<p>
 			</div>
 	  <% end %>

@@ -1,0 +1,13 @@
+	<div data-role="collapsible-set">
+	  <% for entry in @feedEntries %>
+	    <div data-role="collapsible" data-theme="c" data-mini="true" data-collapsed="false">
+				<h3><%= entry.name %> (<%= entry.published_at.strftime("%d.%m.%y @ %H:%M")%>)</h3>
+				<p>
+					<i><%= entry.published_at.strftime("%d-%m-%Y @ %H:%M")%></i>
+					<%= entry.summary.html_safe %>
+					<a href="<%= entry.url%>" data-role="button" rel="external">Leggi sul forum</a>
+
+				<p>
+			</div>
+	  <% end %>
+	</div>
